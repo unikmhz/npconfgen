@@ -33,7 +33,16 @@ class npconfgen::params {
 			$dhcp_package_name = 'dhcp'
 			$dhcp_service_name = 'org.macports.dhcpd'
 
-			# FIXME: BIND
+			$bind_conf_dir     = '/opt/local/etc'
+			$bind_zones_dir    = '/opt/local/var/named'
+			$bind_keys_dir     = '/opt/local/etc/named/keys'
+			$bind_pri_dir      = 'pri'
+			$bind_sec_dir      = 'sec'
+			$bind_rev_dir      = 'rev'
+			$bind_package_name = 'bind9'
+			$bind_service_name = 'org.macports.bind9'
+			$bind_user         = 'root'
+			$bind_group        = 'named'
 
 			$package_provider  = 'macports'
 		}
