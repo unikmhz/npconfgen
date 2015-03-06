@@ -6,6 +6,9 @@ class npconfgen::bind (
 	$package_name     = $::npconfgen::params::bind_package_name,
 	$package_provider = $::npconfgen::params::package_provider,
 	$track_conf_dir   = $::npconfgen::params::bind_track_conf_dir,
+	$conf_user        = $::npconfgen::params::bind_conf_user,
+	$conf_group       = $::npconfgen::params::bind_conf_group,
+	$conf_mode        = $::npconfgen::params::bind_conf_mode,
 	$conf_dir         = $::npconfgen::params::bind_conf_dir,
 	$conf_dir_user    = $::npconfgen::params::bind_conf_dir_user,
 	$conf_dir_group   = $::npconfgen::params::bind_conf_dir_group,
@@ -24,6 +27,9 @@ class npconfgen::bind (
 	$keys_dir_mode    = $::npconfgen::params::bind_keys_dir_mode,
 	$pri_dir          = $::npconfgen::params::bind_pri_dir,
 	$sec_dir          = $::npconfgen::params::bind_sec_dir,
+	$sec_dir_user     = $::npconfgen::params::bind_sec_dir_user,
+	$sec_dir_group    = $::npconfgen::params::bind_sec_dir_group,
+	$sec_dir_mode     = $::npconfgen::params::bind_sec_dir_mode,
 	$rev_dir          = $::npconfgen::params::bind_rev_dir,
 	$rndc_file        = $::npconfgen::params::bind_rndc_file,
 	$rndc_key         = $::npconfgen::params::bind_rndc_key,
@@ -33,6 +39,7 @@ class npconfgen::bind (
 	$memstats_file    = $::npconfgen::params::bind_memstats_file,
 	$dump_file        = $::npconfgen::params::bind_dump_file,
 	$keys_file        = $::npconfgen::params::bind_keys_file,
+	$rootkey_file     = $::npconfgen::params::bind_rootkey_file,
 	$managedkeys_dir  = $::npconfgen::params::bind_managedkeys_dir,
 	$zone_root        = $::npconfgen::params::bind_zone_root,
 	$zone_empty       = $::npconfgen::params::bind_zone_empty,
@@ -82,6 +89,48 @@ class npconfgen::bind (
 		group   => $keys_dir_group,
 		mode    => $keys_dir_mode,
 		require => Package[$package_name],
+	}
+	file { "${conf_dir}/named.conf":
+		ensure  => file,
+		owner   => $conf_user,
+		group   => $conf_group,
+		mode    => $conf_mode,
+		content => template("npconfgen/generated/${confgen_host}/${confgen_service}/named.conf.erb"),
+		require => Package[$package_name],
+		notify  => Service[],
+	}
+	file { "${zones_dir}/${pri_dir}":
+		ensure  => directory,
+		owner   => $zones_dir_user,
+		group   => $zones_dir_group,
+		mode    => $zones_dir_mode,
+		source  => "puppet:///modules/npconfgen/generated/${confgen_host}/${confgen_service}/pri",
+		recurse => true,
+		require => File[$zones_dir],
+		notify  => Service[],
+	}
+	file { "${zones_dir}/${rev_dir}":
+		ensure  => directory,
+		owner   => $zones_dir_user,
+		group   => $zones_dir_group,
+		mode    => $zones_dir_mode,
+		source  => "puppet:///modules/npconfgen/generated/${confgen_host}/${confgen_service}/rev",
+		recurse => true,
+		require => File[$zones_dir],
+		notify  => Service[],
+	}
+	file { "${zones_dir}/${sec_dir}":
+		ensure  => directory,
+		owner   => $sec_dir_user,
+		group   => $sec_dir_group,
+		mode    => $sec_dir_mode,
+		require => File[$zones_dir],
+		notify  => Service[],
+	}
+	service { $service_name:
+		ensure    => $service_ensure,
+		enable    => true,
+		require   => Package[$package_name],
 	}
 }
 

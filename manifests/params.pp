@@ -16,6 +16,9 @@ class npconfgen::params {
 			$dhcp_service_name    = 'isc-dhcp-server'
 
 			$bind_track_conf_dir  = true
+			$bind_conf_user       = 'root'
+			$bind_conf_group      = 'bind'
+			$bind_conf_mode       = '0644'
 			$bind_conf_dir        = '/etc/bind'
 			$bind_conf_dir_user   = 'root'
 			$bind_conf_dir_group  = 'bind'
@@ -34,6 +37,9 @@ class npconfgen::params {
 			$bind_keys_dir_mode   = '0750'
 			$bind_pri_dir         = 'pri'
 			$bind_sec_dir         = 'sec'
+			$bind_sec_dir_user    = 'root'
+			$bind_sec_dir_group   = 'bind'
+			$bind_sec_dir_mode    = '0770'
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = '/etc/bind/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
@@ -43,6 +49,7 @@ class npconfgen::params {
 			$bind_memstats_file   = 'named.memstats'
 			$bind_dump_file       = 'named_dump.db'
 			$bind_keys_file       = undef
+			$bind_rootkey_file    = undef
 			$bind_managedkeys_dir = undef
 			$bind_zone_root       = '/etc/bind/db.root'
 			$bind_zone_empty      = '/etc/bind/db.empty'
@@ -61,6 +68,9 @@ class npconfgen::params {
 			$dhcp_service_name    = 'dhcpd'
 
 			$bind_track_conf_dir  = false
+			$bind_conf_user       = 'root'
+			$bind_conf_group      = 'named'
+			$bind_conf_mode       = '0640'
 			$bind_conf_dir        = '/etc'
 			$bind_conf_dir_user   = 'root'
 			$bind_conf_dir_group  = 'root'
@@ -79,6 +89,9 @@ class npconfgen::params {
 			$bind_keys_dir_mode   = '0750'
 			$bind_pri_dir         = 'pri'
 			$bind_sec_dir         = 'sec'
+			$bind_sec_dir_user    = 'root'
+			$bind_sec_dir_group   = 'named'
+			$bind_sec_dir_mode    = '0770'
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = undef
 			$bind_rndc_key        = undef
@@ -88,6 +101,7 @@ class npconfgen::params {
 			$bind_memstats_file   = '/var/named/data/named_mem_stats.txt'
 			$bind_dump_file       = '/var/named/data/cache_dump.db'
 			$bind_keys_file       = '/etc/named.iscdlv.key'
+			$bind_rootkey_file    = '/etc/named.root.key'
 			$bind_managedkeys_dir = '/var/named/dynamic'
 			$bind_zone_root       = 'named.ca'
 			$bind_zone_empty      = 'named.empty'
@@ -106,6 +120,9 @@ class npconfgen::params {
 			$dhcp_service_name    = 'dhcpd'
 
 			$bind_track_conf_dir  = true
+			$bind_conf_user       = 'root'
+			$bind_conf_group      = 'named'
+			$bind_conf_mode       = '0640'
 			$bind_conf_dir        = '/etc/bind'
 			$bind_conf_dir_user   = 'root'
 			$bind_conf_dir_group  = 'named'
@@ -124,6 +141,9 @@ class npconfgen::params {
 			$bind_keys_dir_mode   = '0750'
 			$bind_pri_dir         = 'pri'
 			$bind_sec_dir         = 'sec'
+			$bind_sec_dir_user    = 'root'
+			$bind_sec_dir_group   = 'named'
+			$bind_sec_dir_mode    = '0770'
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = '/etc/bind/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
@@ -133,6 +153,7 @@ class npconfgen::params {
 			$bind_memstats_file   = 'named.memstats'
 			$bind_dump_file       = 'named_dump.db'
 			$bind_keys_file       = '/etc/bind/bind.keys'
+			$bind_rootkey_file    = undef
 			$bind_managedkeys_dir = undef
 			$bind_zone_root       = '/var/bind/named.cache'
 			$bind_zone_empty      = undef
@@ -151,6 +172,9 @@ class npconfgen::params {
 			$dhcp_service_name    = 'isc-dhcpd'
 
 			$bind_track_conf_dir  = true
+			$bind_conf_user       = 'root'
+			$bind_conf_group      = 'wheel'
+			$bind_conf_mode       = '0644'
 			$bind_conf_dir        = '/usr/local/etc/namedb'
 			$bind_conf_dir_user   = 'root'
 			$bind_conf_dir_group  = 'wheel'
@@ -169,6 +193,9 @@ class npconfgen::params {
 			$bind_keys_dir_mode   = '0750'
 			$bind_pri_dir         = 'master'
 			$bind_sec_dir         = 'slave'
+			$bind_sec_dir_user    = 'root'
+			$bind_sec_dir_group   = 'bind'
+			$bind_sec_dir_mode    = '0770'
 			$bind_rev_dir         = 'revzones'
 			$bind_rndc_file       = '/usr/local/etc/namedb/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
@@ -178,6 +205,7 @@ class npconfgen::params {
 			$bind_memstats_file   = '/var/stats/named.memstats'
 			$bind_dump_file       = '/var/dump/named_dump.db'
 			$bind_keys_file       = undef
+			$bind_rootkey_file    = undef
 			$bind_managedkeys_dir = undef
 			$bind_zone_root       = '/usr/local/etc/namedb/named.root'
 			$bind_zone_empty      = '/usr/local/etc/namedb/master/empty.db'
