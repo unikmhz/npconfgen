@@ -43,6 +43,7 @@ class npconfgen::params {
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = '/etc/bind/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
+			$bind_rndc_cmd        = '/usr/sbin/rndc-confgen -a'
 			$bind_pid_file        = undef
 			$bind_sesskey_file    = undef
 			$bind_stats_file      = 'named.stats'
@@ -95,6 +96,7 @@ class npconfgen::params {
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = undef
 			$bind_rndc_key        = undef
+			$bind_rndc_cmd        = '/sbin/rndc-confgen -a'
 			$bind_pid_file        = '/run/named/named.pid'
 			$bind_sesskey_file    = '/run/named/session.key'
 			$bind_stats_file      = '/var/named/data/named_stats.txt'
@@ -147,6 +149,7 @@ class npconfgen::params {
 			$bind_rev_dir         = 'rev'
 			$bind_rndc_file       = '/etc/bind/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
+			$bind_rndc_cmd        = '/usr/sbin/rndc-confgen -a'
 			$bind_pid_file        = '/run/named/named.pid'
 			$bind_sesskey_file    = '/run/named/session.key'
 			$bind_stats_file      = 'named.stats'
@@ -199,6 +202,7 @@ class npconfgen::params {
 			$bind_rev_dir         = 'revzones'
 			$bind_rndc_file       = '/usr/local/etc/namedb/rndc.key'
 			$bind_rndc_key        = 'rndc-key'
+			$bind_rndc_cmd        = '/usr/local/sbin/rndc-confgen -a'
 			$bind_pid_file        = '/var/run/named/pid'
 			$bind_sesskey_file    = undef
 			$bind_stats_file      = '/var/stats/named.stats'

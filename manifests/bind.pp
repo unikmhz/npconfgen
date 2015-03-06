@@ -33,6 +33,7 @@ class npconfgen::bind (
 	$rev_dir          = $::npconfgen::params::bind_rev_dir,
 	$rndc_file        = $::npconfgen::params::bind_rndc_file,
 	$rndc_key         = $::npconfgen::params::bind_rndc_key,
+	$rndc_cmd         = $::npconfgen::params::bind_rndc_cmd,
 	$pid_file         = $::npconfgen::params::bind_pid_file,
 	$sesskey_file     = $::npconfgen::params::bind_sesskey_file,
 	$stats_file       = $::npconfgen::params::bind_stats_file,
@@ -126,6 +127,13 @@ class npconfgen::bind (
 		mode    => $sec_dir_mode,
 		require => File[$zones_dir],
 		notify  => Service[$service_name],
+	}
+	if ($rndc_cmd != undef) and ($rndc_file != undef) {
+		exec { $rndc_cmd:
+			creates => $rndc_file,
+			require => Package[$package_name],
+			before  => Service[$service_name],
+		}
 	}
 	service { $service_name:
 		ensure    => $service_ensure,
