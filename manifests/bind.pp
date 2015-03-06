@@ -65,7 +65,7 @@ class npconfgen::bind (
 			require => Package[$package_name],
 		}
 	}
-	if ($zones_dir != $conf_dir) or (not $track_conf_dir) {
+	if ($zones_dir != $conf_dir) or (!$track_conf_dir) {
 		file { $zones_dir:
 			ensure  => directory,
 			owner   => $zones_dir_user,
@@ -97,7 +97,7 @@ class npconfgen::bind (
 		mode    => $conf_mode,
 		content => template("npconfgen/generated/${confgen_host}/${confgen_service}/named.conf.erb"),
 		require => Package[$package_name],
-		notify  => Service[],
+		notify  => Service[$service_name],
 	}
 	file { "${zones_dir}/${pri_dir}":
 		ensure  => directory,
@@ -107,7 +107,7 @@ class npconfgen::bind (
 		source  => "puppet:///modules/npconfgen/generated/${confgen_host}/${confgen_service}/pri",
 		recurse => true,
 		require => File[$zones_dir],
-		notify  => Service[],
+		notify  => Service[$service_name],
 	}
 	file { "${zones_dir}/${rev_dir}":
 		ensure  => directory,
@@ -117,7 +117,7 @@ class npconfgen::bind (
 		source  => "puppet:///modules/npconfgen/generated/${confgen_host}/${confgen_service}/rev",
 		recurse => true,
 		require => File[$zones_dir],
-		notify  => Service[],
+		notify  => Service[$service_name],
 	}
 	file { "${zones_dir}/${sec_dir}":
 		ensure  => directory,
@@ -125,7 +125,7 @@ class npconfgen::bind (
 		group   => $sec_dir_group,
 		mode    => $sec_dir_mode,
 		require => File[$zones_dir],
-		notify  => Service[],
+		notify  => Service[$service_name],
 	}
 	service { $service_name:
 		ensure    => $service_ensure,
